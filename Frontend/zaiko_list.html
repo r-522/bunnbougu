@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -65,58 +65,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">P0001</td>
-          <td>HB鉛筆 12本入</td>
-          <td class="table__num" data-format="number">1200</td>
-          <td class="table__num" data-format="number">100</td>
-          <td class="table__num" data-format="number">1100</td>
-          <td class="table__center">箱</td>
-          <td>通常</td>
-          <td class="mono">2026-04-18</td>
-          <td class="table__actions">
-            <a href="./zaiko_adjust.html?prdcd=P0001">調整</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0002</td>
-          <td>B5キャンパスノート 30枚</td>
-          <td class="table__num" data-format="number">30</td>
-          <td class="table__num" data-format="number">20</td>
-          <td class="table__num" data-format="number">10</td>
-          <td class="table__center">冊</td>
-          <td>在庫僅少</td>
-          <td class="mono">2026-04-18</td>
-          <td class="table__actions">
-            <a href="./zaiko_adjust.html?prdcd=P0002">調整</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0003</td>
-          <td>A4クリアファイル 10冊パック</td>
-          <td class="table__num" data-format="number">0</td>
-          <td class="table__num" data-format="number">0</td>
-          <td class="table__num" data-format="number">0</td>
-          <td class="table__center">袋</td>
-          <td>欠品</td>
-          <td class="mono">2026-04-17</td>
-          <td class="table__actions">
-            <a href="./zaiko_adjust.html?prdcd=P0003">調整</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0004</td>
-          <td>スティックのり 大</td>
-          <td class="table__num" data-format="number">540</td>
-          <td class="table__num" data-format="number">40</td>
-          <td class="table__num" data-format="number">500</td>
-          <td class="table__center">本</td>
-          <td>通常</td>
-          <td class="mono">2026-04-16</td>
-          <td class="table__actions">
-            <a href="./zaiko_adjust.html?prdcd=P0004">調整</a>
-          </td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 

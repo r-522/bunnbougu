@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -66,66 +66,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">P0001</td>
-          <td>HB鉛筆 12本入</td>
-          <td>筆記具</td>
-          <td class="table__num" data-format="number">480</td>
-          <td class="table__center">箱</td>
-          <td class="mono">2026-01-15</td>
-          <td class="table__actions">
-            <a href="./syohin_form.html?mode=edit&prdcd=P0001">編集</a>
-            <a href="./syohin_form.html?mode=delete&prdcd=P0001">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0002</td>
-          <td>B5キャンパスノート 30枚</td>
-          <td>ノート・紙製品</td>
-          <td class="table__num" data-format="number">180</td>
-          <td class="table__center">冊</td>
-          <td class="mono">2026-01-15</td>
-          <td class="table__actions">
-            <a href="./syohin_form.html?mode=edit&prdcd=P0002">編集</a>
-            <a href="./syohin_form.html?mode=delete&prdcd=P0002">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0003</td>
-          <td>A4クリアファイル 10冊パック</td>
-          <td>ファイル・バインダ</td>
-          <td class="table__num" data-format="number">320</td>
-          <td class="table__center">袋</td>
-          <td class="mono">2026-01-20</td>
-          <td class="table__actions">
-            <a href="./syohin_form.html?mode=edit&prdcd=P0003">編集</a>
-            <a href="./syohin_form.html?mode=delete&prdcd=P0003">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0004</td>
-          <td>スティックのり 大</td>
-          <td>接着・修正</td>
-          <td class="table__num" data-format="number">150</td>
-          <td class="table__center">本</td>
-          <td class="mono">2026-02-01</td>
-          <td class="table__actions">
-            <a href="./syohin_form.html?mode=edit&prdcd=P0004">編集</a>
-            <a href="./syohin_form.html?mode=delete&prdcd=P0004">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">P0005</td>
-          <td>ゼムクリップ 100個入</td>
-          <td>事務雑貨</td>
-          <td class="table__num" data-format="number">120</td>
-          <td class="table__center">箱</td>
-          <td class="mono">2026-02-10</td>
-          <td class="table__actions">
-            <a href="./syohin_form.html?mode=edit&prdcd=P0005">編集</a>
-            <a href="./syohin_form.html?mode=delete&prdcd=P0005">削除</a>
-          </td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 

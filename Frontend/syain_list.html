@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -67,54 +67,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">10001</td>
-          <td>佐藤 部長</td>
-          <td>サトウ ブチョウ</td>
-          <td>営業部</td>
-          <td>部長</td>
-          <td class="mono">2026-01-01</td>
-          <td class="table__actions">
-            <a href="./syain_form.html?mode=edit&sycd=10001">編集</a>
-            <a href="./syain_form.html?mode=delete&sycd=10001">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">12345</td>
-          <td>業務 太郎</td>
-          <td>ギョウム タロウ</td>
-          <td>営業部</td>
-          <td>担当</td>
-          <td class="mono">2026-01-01</td>
-          <td class="table__actions">
-            <a href="./syain_form.html?mode=edit&sycd=12345">編集</a>
-            <a href="./syain_form.html?mode=delete&sycd=12345">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">20001</td>
-          <td>田中 仕入</td>
-          <td>タナカ シイレ</td>
-          <td>仕入部</td>
-          <td>課長</td>
-          <td class="mono">2026-01-05</td>
-          <td class="table__actions">
-            <a href="./syain_form.html?mode=edit&sycd=20001">編集</a>
-            <a href="./syain_form.html?mode=delete&sycd=20001">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">30001</td>
-          <td>伊藤 物流</td>
-          <td>イトウ ブツリュウ</td>
-          <td>物流部</td>
-          <td>主任</td>
-          <td class="mono">2026-01-05</td>
-          <td class="table__actions">
-            <a href="./syain_form.html?mode=edit&sycd=30001">編集</a>
-            <a href="./syain_form.html?mode=delete&sycd=30001">削除</a>
-          </td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 

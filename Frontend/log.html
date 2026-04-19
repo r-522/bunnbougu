@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -82,66 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">2026-04-19 09:12:03</td>
-          <td class="mono">12345</td>
-          <td>業務 太郎</td>
-          <td>LOGIN</td>
-          <td class="mono">-</td>
-          <td class="mono">-</td>
-          <td>ログイン成功</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td class="mono">2026-04-19 09:15:22</td>
-          <td class="mono">12345</td>
-          <td>業務 太郎</td>
-          <td>CREATE</td>
-          <td class="mono">F07</td>
-          <td class="mono">J202604003</td>
-          <td>受注登録</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td class="mono">2026-04-19 10:03:45</td>
-          <td class="mono">20001</td>
-          <td>田中 仕入</td>
-          <td>CREATE</td>
-          <td class="mono">F08</td>
-          <td class="mono">H202604003</td>
-          <td>発注登録</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td class="mono">2026-04-19 11:22:01</td>
-          <td class="mono">30001</td>
-          <td>伊藤 物流</td>
-          <td>UPDATE</td>
-          <td class="mono">F09</td>
-          <td class="mono">H202604002</td>
-          <td>入荷登録（400点）</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td class="mono">2026-04-19 13:45:18</td>
-          <td class="mono">12345</td>
-          <td>業務 太郎</td>
-          <td>UPDATE</td>
-          <td class="mono">F06</td>
-          <td class="mono">P0002</td>
-          <td>在庫調整（30→30 棚卸差異なし）</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td class="mono">2026-04-19 14:02:30</td>
-          <td class="mono">12345</td>
-          <td>業務 太郎</td>
-          <td>ERROR</td>
-          <td class="mono">F10</td>
-          <td class="mono">J202604099</td>
-          <td>出荷登録：有効在庫不足</td>
-          <td>NG</td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 

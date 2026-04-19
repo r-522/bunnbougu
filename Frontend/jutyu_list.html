@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -69,41 +69,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">J202604001</td>
-          <td class="mono">2026-04-01</td>
-          <td>渋谷オフィスサプライ</td>
-          <td class="mono">2026-04-10</td>
-          <td class="table__num" data-format="number">48000</td>
-          <td>出荷済</td>
-          <td class="table__actions">
-            <a href="./jutyu_form.html?mode=view&juno=J202604001">参照</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">J202604002</td>
-          <td class="mono">2026-04-05</td>
-          <td>横浜ブックセンター</td>
-          <td class="mono">2026-04-15</td>
-          <td class="table__num" data-format="number">12600</td>
-          <td>出荷準備中</td>
-          <td class="table__actions">
-            <a href="./jutyu_form.html?mode=edit&juno=J202604002">修正</a>
-            <a href="./jutyu_form.html?mode=cancel&juno=J202604002">取消</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">J202604003</td>
-          <td class="mono">2026-04-15</td>
-          <td>渋谷オフィスサプライ</td>
-          <td class="mono">2026-04-25</td>
-          <td class="table__num" data-format="number">73200</td>
-          <td>受付済</td>
-          <td class="table__actions">
-            <a href="./jutyu_form.html?mode=edit&juno=J202604003">修正</a>
-            <a href="./jutyu_form.html?mode=cancel&juno=J202604003">取消</a>
-          </td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 
