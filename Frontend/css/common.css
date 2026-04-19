@@ -1,0 +1,457 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   common.css
+   文房具基幹システム 共通スタイル
+   - Googleトップページレベルのシンプルさを徹底
+   - BEM記法
+   - !important 原則禁止
+   ========================================================================== */
+
+/* --- reset --------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "Meiryo", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #202124;
+  background-color: #ffffff;
+}
+
+/* 英数字用途（入力欄・テーブルセル数値など） */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea,
+.num,
+.code {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 等幅（伝票番号・社員番号等） */
+.mono {
+  font-family: "Roboto Mono", "Consolas", monospace;
+}
+
+/* --- layout -------------------------------------------------------------- */
+.header {
+  border-bottom: 1px solid #dadce0;
+  padding: 8px 16px;
+  background-color: #ffffff;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #202124;
+}
+
+.header__user {
+  font-size: 13px;
+  color: #5f6368;
+}
+
+.header__user a {
+  margin-left: 12px;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.footer {
+  border-top: 1px solid #dadce0;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #5f6368;
+}
+
+/* --- breadcrumb ---------------------------------------------------------- */
+.breadcrumb {
+  font-size: 13px;
+  color: #5f6368;
+  margin-bottom: 12px;
+}
+
+.breadcrumb a {
+  color: #1a0dab;
+}
+
+.breadcrumb__sep {
+  margin: 0 4px;
+  color: #5f6368;
+}
+
+/* --- heading ------------------------------------------------------------- */
+.h1 {
+  font-size: 16px;
+  font-weight: 500;
+  border-left: 3px solid #202124;
+  padding-left: 8px;
+  margin-bottom: 12px;
+}
+
+.h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 16px 0 8px;
+  color: #202124;
+}
+
+/* --- link ---------------------------------------------------------------- */
+a {
+  color: #1a0dab;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #681da8;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* --- button -------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 6px 14px;
+  border: 1px solid #dadce0;
+  border-radius: 2px;
+  background-color: #f8f9fa;
+  color: #202124;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #f1f3f4;
+  border-color: #c6c8cb;
+}
+
+.btn:focus {
+  outline: 2px solid #1a0dab;
+  outline-offset: 1px;
+}
+
+.btn--primary {
+  background-color: #1a73e8;
+  color: #ffffff;
+  border-color: #1a73e8;
+}
+
+.btn--primary:hover {
+  background-color: #1765cc;
+  border-color: #1765cc;
+}
+
+.btn--danger {
+  background-color: #ffffff;
+  color: #b71c1c;
+  border-color: #dadce0;
+}
+
+.btn--danger:hover {
+  background-color: #fff5f5;
+  border-color: #b71c1c;
+}
+
+.btn--sm {
+  font-size: 13px;
+  padding: 3px 8px;
+}
+
+.btn-group {
+  margin: 12px 0;
+}
+
+.btn-group .btn {
+  margin-right: 4px;
+}
+
+/* --- form ---------------------------------------------------------------- */
+.form {
+  margin: 12px 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #dadce0;
+  padding: 8px 0;
+}
+
+.form__row:first-child {
+  border-top: 1px solid #dadce0;
+}
+
+.form__label {
+  width: 200px;
+  padding-top: 6px;
+  font-size: 13px;
+  color: #202124;
+  flex-shrink: 0;
+}
+
+.form__label--required::after {
+  content: " *";
+  color: #b71c1c;
+}
+
+.form__control {
+  flex: 1;
+}
+
+.form__hint {
+  display: block;
+  font-size: 12px;
+  color: #5f6368;
+  margin-top: 4px;
+}
+
+.form__error {
+  display: block;
+  font-size: 12px;
+  color: #b71c1c;
+  margin-top: 4px;
+}
+
+.input,
+.select,
+.textarea {
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #dadce0;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #202124;
+  width: 320px;
+  max-width: 100%;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #1a73e8;
+}
+
+.input--sm {
+  width: 120px;
+}
+
+.input--md {
+  width: 200px;
+}
+
+.input--lg {
+  width: 480px;
+}
+
+.input--num {
+  width: 120px;
+  text-align: right;
+}
+
+.textarea {
+  width: 480px;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+.form__actions {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #dadce0;
+  text-align: right;
+}
+
+.form__actions .btn {
+  margin-left: 4px;
+}
+
+/* --- search bar ---------------------------------------------------------- */
+.search {
+  border: 1px solid #dadce0;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background-color: #f8f9fa;
+}
+
+.search__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.search__label {
+  font-size: 13px;
+  color: #5f6368;
+}
+
+.search__actions {
+  margin-top: 8px;
+}
+
+/* --- table --------------------------------------------------------------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background-color: #ffffff;
+}
+
+.table th,
+.table td {
+  border: 1px solid #dadce0;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #f1f3f4;
+  font-weight: 500;
+  color: #202124;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table__num {
+  text-align: right;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+.table__center {
+  text-align: center;
+}
+
+.table__actions {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.table__actions a {
+  margin: 0 4px;
+}
+
+.table--detail th {
+  width: 200px;
+}
+
+/* --- pagination ---------------------------------------------------------- */
+.pagination {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: right;
+  color: #5f6368;
+}
+
+.pagination a {
+  margin: 0 4px;
+}
+
+.pagination__current {
+  font-weight: 500;
+  color: #202124;
+  margin: 0 4px;
+}
+
+/* --- status text（色付けはせず文字のみで表現） --------------------------- */
+.status {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+/* --- message ------------------------------------------------------------- */
+.msg {
+  padding: 8px 12px;
+  border: 1px solid #dadce0;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.msg--info {
+  background-color: #f8f9fa;
+  color: #202124;
+  border-color: #dadce0;
+}
+
+.msg--error {
+  background-color: #fff5f5;
+  color: #b71c1c;
+  border-color: #b71c1c;
+}
+
+.msg--success {
+  background-color: #f5faf6;
+  color: #0b5c2e;
+  border-color: #0b5c2e;
+}
+
+/* --- utility ------------------------------------------------------------- */
+.u-mt-8 {
+  margin-top: 8px;
+}
+.u-mt-16 {
+  margin-top: 16px;
+}
+.u-mb-8 {
+  margin-bottom: 8px;
+}
+.u-text-right {
+  text-align: right;
+}
+.u-text-center {
+  text-align: center;
+}
+.u-nowrap {
+  white-space: nowrap;
+}
+
+/* 印刷時は背景色を抑止 */
+@media print {
+  body {
+    background-color: #ffffff;
+  }
+  .btn,
+  .btn-group,
+  .search {
+    display: none;
+  }
+}

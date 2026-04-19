@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在庫一覧 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>在庫一覧</span>
+    </nav>
+
+    <h1 class="h1">F06 在庫一覧</h1>
+
+    <form class="search" action="./zaiko_list.html" method="get">
+      <div class="search__row">
+        <label class="search__label" for="q_prdcd">商品コード</label>
+        <input class="input input--sm" type="text" id="q_prdcd" name="prdcd" maxlength="10">
+        <label class="search__label" for="q_prdnm">商品名</label>
+        <input class="input input--md" type="text" id="q_prdnm" name="prdnm" maxlength="60">
+        <label class="search__label" for="q_zkst">状態</label>
+        <select class="select" id="q_zkst" name="zkst">
+          <option value="">すべて</option>
+          <option value="1">通常</option>
+          <option value="2">在庫僅少</option>
+          <option value="3">欠品</option>
+        </select>
+      </div>
+      <div class="search__actions">
+        <button class="btn btn--primary btn--sm" type="submit">検索</button>
+        <a class="btn btn--sm" href="./zaiko_list.html">クリア</a>
+      </div>
+    </form>
+
+    <div class="btn-group">
+      <a class="btn" href="./menu.html">メニューへ戻る</a>
+    </div>
+
+    <table class="table" aria-label="在庫一覧">
+      <thead>
+        <tr>
+          <th scope="col">商品コード</th>
+          <th scope="col">商品名</th>
+          <th scope="col">現在庫</th>
+          <th scope="col">引当済</th>
+          <th scope="col">有効在庫</th>
+          <th scope="col">単位</th>
+          <th scope="col">状態</th>
+          <th scope="col">最終更新</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">P0001</td>
+          <td>HB鉛筆 12本入</td>
+          <td class="table__num" data-format="number">1200</td>
+          <td class="table__num" data-format="number">100</td>
+          <td class="table__num" data-format="number">1100</td>
+          <td class="table__center">箱</td>
+          <td>通常</td>
+          <td class="mono">2026-04-18</td>
+          <td class="table__actions">
+            <a href="./zaiko_adjust.html?prdcd=P0001">調整</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">P0002</td>
+          <td>B5キャンパスノート 30枚</td>
+          <td class="table__num" data-format="number">30</td>
+          <td class="table__num" data-format="number">20</td>
+          <td class="table__num" data-format="number">10</td>
+          <td class="table__center">冊</td>
+          <td>在庫僅少</td>
+          <td class="mono">2026-04-18</td>
+          <td class="table__actions">
+            <a href="./zaiko_adjust.html?prdcd=P0002">調整</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">P0003</td>
+          <td>A4クリアファイル 10冊パック</td>
+          <td class="table__num" data-format="number">0</td>
+          <td class="table__num" data-format="number">0</td>
+          <td class="table__num" data-format="number">0</td>
+          <td class="table__center">袋</td>
+          <td>欠品</td>
+          <td class="mono">2026-04-17</td>
+          <td class="table__actions">
+            <a href="./zaiko_adjust.html?prdcd=P0003">調整</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">P0004</td>
+          <td>スティックのり 大</td>
+          <td class="table__num" data-format="number">540</td>
+          <td class="table__num" data-format="number">40</td>
+          <td class="table__num" data-format="number">500</td>
+          <td class="table__center">本</td>
+          <td>通常</td>
+          <td class="mono">2026-04-16</td>
+          <td class="table__actions">
+            <a href="./zaiko_adjust.html?prdcd=P0004">調整</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="pagination" aria-label="ページ送り">
+      <span class="pagination__current">1</span> / 1
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+</body>
+</html>

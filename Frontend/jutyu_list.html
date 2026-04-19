@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>受注一覧 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>受注一覧</span>
+    </nav>
+
+    <h1 class="h1">F07 受注一覧</h1>
+
+    <form class="search" action="./jutyu_list.html" method="get">
+      <div class="search__row">
+        <label class="search__label" for="q_juno">受注番号</label>
+        <input class="input input--sm" type="text" id="q_juno" name="juno" maxlength="12">
+        <label class="search__label" for="q_trcd">販売先</label>
+        <input class="input input--sm" type="text" id="q_trcd" name="trcd" maxlength="10">
+        <label class="search__label" for="q_juf">受注日（開始）</label>
+        <input class="input input--sm" type="date" id="q_juf" name="juf">
+        <label class="search__label" for="q_jut">受注日（終了）</label>
+        <input class="input input--sm" type="date" id="q_jut" name="jut">
+        <label class="search__label" for="q_just">状態</label>
+        <select class="select" id="q_just" name="just">
+          <option value="">すべて</option>
+          <option value="1">受付済</option>
+          <option value="2">出荷準備中</option>
+          <option value="3">出荷済</option>
+          <option value="9">取消</option>
+        </select>
+      </div>
+      <div class="search__actions">
+        <button class="btn btn--primary btn--sm" type="submit">検索</button>
+        <a class="btn btn--sm" href="./jutyu_list.html">クリア</a>
+      </div>
+    </form>
+
+    <div class="btn-group">
+      <a class="btn btn--primary" href="./jutyu_form.html">新規受注入力</a>
+      <a class="btn" href="./menu.html">メニューへ戻る</a>
+    </div>
+
+    <table class="table" aria-label="受注一覧">
+      <thead>
+        <tr>
+          <th scope="col">受注番号</th>
+          <th scope="col">受注日</th>
+          <th scope="col">販売先</th>
+          <th scope="col">納期</th>
+          <th scope="col">金額（税抜）</th>
+          <th scope="col">状態</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">J202604001</td>
+          <td class="mono">2026-04-01</td>
+          <td>渋谷オフィスサプライ</td>
+          <td class="mono">2026-04-10</td>
+          <td class="table__num" data-format="number">48000</td>
+          <td>出荷済</td>
+          <td class="table__actions">
+            <a href="./jutyu_form.html?mode=view&juno=J202604001">参照</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">J202604002</td>
+          <td class="mono">2026-04-05</td>
+          <td>横浜ブックセンター</td>
+          <td class="mono">2026-04-15</td>
+          <td class="table__num" data-format="number">12600</td>
+          <td>出荷準備中</td>
+          <td class="table__actions">
+            <a href="./jutyu_form.html?mode=edit&juno=J202604002">修正</a>
+            <a href="./jutyu_form.html?mode=cancel&juno=J202604002">取消</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">J202604003</td>
+          <td class="mono">2026-04-15</td>
+          <td>渋谷オフィスサプライ</td>
+          <td class="mono">2026-04-25</td>
+          <td class="table__num" data-format="number">73200</td>
+          <td>受付済</td>
+          <td class="table__actions">
+            <a href="./jutyu_form.html?mode=edit&juno=J202604003">修正</a>
+            <a href="./jutyu_form.html?mode=cancel&juno=J202604003">取消</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="pagination" aria-label="ページ送り">
+      <span class="pagination__current">1</span> / 1
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+</body>
+</html>

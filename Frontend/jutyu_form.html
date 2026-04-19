@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>受注入力 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <a href="./jutyu_list.html">受注一覧</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>受注入力</span>
+    </nav>
+
+    <h1 class="h1">F07 受注入力</h1>
+
+    <form class="form" action="/jutyu" method="post" novalidate>
+      <h2 class="h2">ヘッダ情報</h2>
+      <div class="form__row">
+        <label class="form__label form__label--required" for="judt">受注日</label>
+        <div class="form__control">
+          <input class="input input--sm" type="date" id="judt" name="judt"
+            data-validate="required" required>
+          <span class="form__error" data-error-for="judt" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="jutr">販売先</label>
+        <div class="form__control">
+          <select class="select" id="jutr" name="jutr" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="T0101">T0101 渋谷オフィスサプライ</option>
+            <option value="T0102">T0102 横浜ブックセンター</option>
+          </select>
+          <span class="form__error" data-error-for="jutr" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="junk">納期</label>
+        <div class="form__control">
+          <input class="input input--sm" type="date" id="junk" name="junk"
+            data-validate="required" required>
+          <span class="form__error" data-error-for="junk" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="jurm">備考</label>
+        <div class="form__control">
+          <textarea class="textarea" id="jurm" name="jurm" maxlength="500"></textarea>
+        </div>
+      </div>
+
+      <h2 class="h2">明細</h2>
+      <table class="table" aria-label="受注明細">
+        <thead>
+          <tr>
+            <th scope="col">行</th>
+            <th scope="col">商品コード</th>
+            <th scope="col">商品名</th>
+            <th scope="col">単価</th>
+            <th scope="col">数量</th>
+            <th scope="col">金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table__center mono">1</td>
+            <td>
+              <input class="input input--sm mono" type="text" name="dt_prdcd_1"
+                maxlength="10" value="P0001">
+            </td>
+            <td>
+              <input class="input input--md" type="text" name="dt_prdnm_1"
+                value="HB鉛筆 12本入" readonly>
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_prdpr_1"
+                value="480" min="0" step="1">
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_qty_1"
+                value="10" min="1" step="1" data-validate="numeric">
+            </td>
+            <td class="table__num mono">4,800</td>
+          </tr>
+          <tr>
+            <td class="table__center mono">2</td>
+            <td>
+              <input class="input input--sm mono" type="text" name="dt_prdcd_2"
+                maxlength="10" value="P0002">
+            </td>
+            <td>
+              <input class="input input--md" type="text" name="dt_prdnm_2"
+                value="B5キャンパスノート 30枚" readonly>
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_prdpr_2"
+                value="180" min="0" step="1">
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_qty_2"
+                value="40" min="1" step="1" data-validate="numeric">
+            </td>
+            <td class="table__num mono">7,200</td>
+          </tr>
+          <tr>
+            <td class="table__center mono">3</td>
+            <td>
+              <input class="input input--sm mono" type="text" name="dt_prdcd_3" maxlength="10">
+            </td>
+            <td>
+              <input class="input input--md" type="text" name="dt_prdnm_3" readonly>
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_prdpr_3" min="0" step="1">
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_qty_3" min="1" step="1">
+            </td>
+            <td class="table__num mono">&minus;</td>
+          </tr>
+          <tr>
+            <td class="table__center mono">4</td>
+            <td>
+              <input class="input input--sm mono" type="text" name="dt_prdcd_4" maxlength="10">
+            </td>
+            <td>
+              <input class="input input--md" type="text" name="dt_prdnm_4" readonly>
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_prdpr_4" min="0" step="1">
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_qty_4" min="1" step="1">
+            </td>
+            <td class="table__num mono">&minus;</td>
+          </tr>
+          <tr>
+            <td class="table__center mono">5</td>
+            <td>
+              <input class="input input--sm mono" type="text" name="dt_prdcd_5" maxlength="10">
+            </td>
+            <td>
+              <input class="input input--md" type="text" name="dt_prdnm_5" readonly>
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_prdpr_5" min="0" step="1">
+            </td>
+            <td>
+              <input class="input input--num" type="number" name="dt_qty_5" min="1" step="1">
+            </td>
+            <td class="table__num mono">&minus;</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="5" class="u-text-right">合計金額（税抜）</th>
+            <th class="table__num mono">12,000</th>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="form__actions">
+        <a class="btn" href="./jutyu_list.html">キャンセル</a>
+        <button class="btn" type="submit" formaction="/jutyu/recalc">再計算</button>
+        <button class="btn btn--primary" type="submit">登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>

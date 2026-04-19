@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   login.css
+   F01 ログイン画面専用スタイル
+   ========================================================================== */
+
+.login {
+  max-width: 360px;
+  margin: 80px auto 0;
+  padding: 24px;
+  border: 1px solid #dadce0;
+  border-radius: 2px;
+  background-color: #ffffff;
+}
+
+.login__title {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #202124;
+}
+
+.login__subtitle {
+  font-size: 13px;
+  color: #5f6368;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.login__row {
+  margin-bottom: 12px;
+}
+
+.login__label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #202124;
+}
+
+.login__input {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #dadce0;
+  border-radius: 2px;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  letter-spacing: 0.2em;
+}
+
+.login__input:focus {
+  outline: none;
+  border-color: #1a73e8;
+}
+
+.login__actions {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.login__submit {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+  background-color: #1a73e8;
+  color: #ffffff;
+  border: 1px solid #1a73e8;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.login__submit:hover {
+  background-color: #1765cc;
+}
+
+.login__note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #5f6368;
+  text-align: center;
+}

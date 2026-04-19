@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>取引先マスタ登録 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <a href="./torihiki_list.html">取引先マスタ一覧</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>取引先マスタ登録</span>
+    </nav>
+
+    <h1 class="h1">F04 取引先マスタ登録</h1>
+
+    <form class="form" action="/torihiki" method="post" novalidate>
+      <div class="form__row">
+        <label class="form__label form__label--required" for="trcd">取引先コード</label>
+        <div class="form__control">
+          <input class="input input--sm" type="text" id="trcd" name="trcd"
+            maxlength="10" data-validate="required" required>
+          <span class="form__hint">半角英数字10桁以内（例: T0001）</span>
+          <span class="form__error" data-error-for="trcd" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="trnm">取引先名</label>
+        <div class="form__control">
+          <input class="input input--lg" type="text" id="trnm" name="trnm"
+            maxlength="60" data-validate="required" required>
+          <span class="form__error" data-error-for="trnm" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="trtp">区分</label>
+        <div class="form__control">
+          <select class="select" id="trtp" name="trtp" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="1">仕入先</option>
+            <option value="2">販売先</option>
+            <option value="3">両方</option>
+          </select>
+          <span class="form__error" data-error-for="trtp" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trzp">郵便番号</label>
+        <div class="form__control">
+          <input class="input input--sm" type="text" id="trzp" name="trzp"
+            maxlength="8" placeholder="100-0001">
+          <span class="form__hint">ハイフンあり/なしどちらも可</span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trad">住所</label>
+        <div class="form__control">
+          <input class="input input--lg" type="text" id="trad" name="trad" maxlength="200">
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trtl">電話番号</label>
+        <div class="form__control">
+          <input class="input input--md" type="tel" id="trtl" name="trtl" maxlength="20">
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trpc">担当者名</label>
+        <div class="form__control">
+          <input class="input input--md" type="text" id="trpc" name="trpc" maxlength="40">
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trml">メールアドレス</label>
+        <div class="form__control">
+          <input class="input input--lg" type="email" id="trml" name="trml" maxlength="100">
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="trrm">備考</label>
+        <div class="form__control">
+          <textarea class="textarea" id="trrm" name="trrm" maxlength="500"></textarea>
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <a class="btn" href="./torihiki_list.html">キャンセル</a>
+        <button class="btn btn--primary" type="submit">登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>
