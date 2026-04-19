@@ -11,7 +11,7 @@
     <div class="header__inner">
       <span class="header__title">文房具基幹システム</span>
       <span class="header__user">
-        <span class="mono">12345</span> 業務太郎
+        <span class="mono">${syain_no}</span> ${syain_name}
         <a href="/logout">ログアウト</a>
       </span>
     </div>
@@ -64,54 +64,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="mono">T0001</td>
-          <td>東京文具卸株式会社</td>
-          <td>仕入先</td>
-          <td class="mono">03-1234-5678</td>
-          <td>山田 一郎</td>
-          <td class="mono">2026-01-10</td>
-          <td class="table__actions">
-            <a href="./torihiki_form.html?mode=edit&trcd=T0001">編集</a>
-            <a href="./torihiki_form.html?mode=delete&trcd=T0001">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">T0002</td>
-          <td>大阪ステーショナリー商会</td>
-          <td>仕入先</td>
-          <td class="mono">06-2345-6789</td>
-          <td>佐藤 花子</td>
-          <td class="mono">2026-01-10</td>
-          <td class="table__actions">
-            <a href="./torihiki_form.html?mode=edit&trcd=T0002">編集</a>
-            <a href="./torihiki_form.html?mode=delete&trcd=T0002">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">T0101</td>
-          <td>渋谷オフィスサプライ</td>
-          <td>販売先</td>
-          <td class="mono">03-3456-7890</td>
-          <td>鈴木 次郎</td>
-          <td class="mono">2026-01-12</td>
-          <td class="table__actions">
-            <a href="./torihiki_form.html?mode=edit&trcd=T0101">編集</a>
-            <a href="./torihiki_form.html?mode=delete&trcd=T0101">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="mono">T0102</td>
-          <td>横浜ブックセンター</td>
-          <td>販売先</td>
-          <td class="mono">045-456-7890</td>
-          <td>高橋 三郎</td>
-          <td class="mono">2026-01-18</td>
-          <td class="table__actions">
-            <a href="./torihiki_form.html?mode=edit&trcd=T0102">編集</a>
-            <a href="./torihiki_form.html?mode=delete&trcd=T0102">削除</a>
-          </td>
-        </tr>
+        ${raw:rows}
       </tbody>
     </table>
 
