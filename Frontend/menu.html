@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メニュー - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/menu.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1 class="h1">メインメニュー</h1>
+
+    <nav class="menu" aria-label="業務メニュー">
+      <div class="menu__group">
+        <div class="menu__group-title">マスタ管理</div>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="./syohin_list.html">
+              <span class="menu__link-code">F03</span>商品マスタ
+              <span class="menu__desc">商品コード・商品名・単価等の管理</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./torihiki_list.html">
+              <span class="menu__link-code">F04</span>取引先マスタ
+              <span class="menu__desc">仕入先・販売先の管理</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./syain_list.html">
+              <span class="menu__link-code">F05</span>社員マスタ
+              <span class="menu__desc">社員番号・氏名・所属の管理</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu__group">
+        <div class="menu__group-title">在庫・受発注</div>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="./zaiko_list.html">
+              <span class="menu__link-code">F06</span>在庫照会・調整
+              <span class="menu__desc">現在庫数の確認・棚卸調整</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./jutyu_list.html">
+              <span class="menu__link-code">F07</span>受注管理
+              <span class="menu__desc">販売先からの受注入力・修正・取消</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./hatyu_list.html">
+              <span class="menu__link-code">F08</span>発注管理
+              <span class="menu__desc">仕入先への発注入力・修正・取消</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu__group">
+        <div class="menu__group-title">入出荷</div>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="./nyuka.html">
+              <span class="menu__link-code">F09</span>入荷登録
+              <span class="menu__desc">発注に対する入荷実績の登録</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./syukka.html">
+              <span class="menu__link-code">F10</span>出荷登録
+              <span class="menu__desc">受注に対する出荷実績の登録</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu__group">
+        <div class="menu__group-title">監査</div>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="./log.html">
+              <span class="menu__link-code">F11</span>操作履歴照会
+              <span class="menu__desc">操作ログの検索・参照</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+</body>
+</html>

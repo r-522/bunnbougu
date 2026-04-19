@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在庫調整 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <a href="./zaiko_list.html">在庫一覧</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>在庫調整</span>
+    </nav>
+
+    <h1 class="h1">F06 在庫調整</h1>
+
+    <div class="msg msg--info">棚卸結果を入力してください。調整後の在庫数は操作履歴に記録されます。</div>
+
+    <form class="form" action="/zaiko/adjust" method="post" novalidate
+      data-confirm="入力内容で在庫数を更新します。よろしいですか？">
+      <div class="form__row">
+        <span class="form__label">商品コード</span>
+        <div class="form__control">
+          <span class="mono">P0002</span>
+          <input type="hidden" name="prdcd" value="P0002">
+        </div>
+      </div>
+
+      <div class="form__row">
+        <span class="form__label">商品名</span>
+        <div class="form__control">B5キャンパスノート 30枚</div>
+      </div>
+
+      <div class="form__row">
+        <span class="form__label">単位</span>
+        <div class="form__control">冊</div>
+      </div>
+
+      <div class="form__row">
+        <span class="form__label">現在庫数</span>
+        <div class="form__control"><span class="num" data-format="number">30</span></div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="zkaq">調整後在庫数</label>
+        <div class="form__control">
+          <input class="input input--num" type="number" id="zkaq" name="zkaq"
+            min="0" step="1" data-validate="required numeric" required>
+          <span class="form__hint">半角数値・マイナス不可</span>
+          <span class="form__error" data-error-for="zkaq" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="zkrs">調整理由</label>
+        <div class="form__control">
+          <select class="select" id="zkrs" name="zkrs" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="01">棚卸差異</option>
+            <option value="02">破損・廃棄</option>
+            <option value="03">社内使用</option>
+            <option value="04">サンプル出荷</option>
+            <option value="99">その他</option>
+          </select>
+          <span class="form__error" data-error-for="zkrs" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="zkrm">備考</label>
+        <div class="form__control">
+          <textarea class="textarea" id="zkrm" name="zkrm" maxlength="500"></textarea>
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <a class="btn" href="./zaiko_list.html">キャンセル</a>
+        <button class="btn btn--primary" type="submit">登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>

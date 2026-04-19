@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社員マスタ登録 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <a href="./syain_list.html">社員マスタ一覧</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>社員マスタ登録</span>
+    </nav>
+
+    <h1 class="h1">F05 社員マスタ登録</h1>
+
+    <form class="form" action="/syain" method="post" novalidate>
+      <div class="form__row">
+        <label class="form__label form__label--required" for="sycd">社員番号</label>
+        <div class="form__control">
+          <input class="input input--sm" type="text" id="sycd" name="sycd"
+            maxlength="5" minlength="5" inputmode="numeric" pattern="\d{5}"
+            data-validate="required numeric" required>
+          <span class="form__hint">半角数字5桁</span>
+          <span class="form__error" data-error-for="sycd" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="synm">氏名</label>
+        <div class="form__control">
+          <input class="input input--md" type="text" id="synm" name="synm"
+            maxlength="40" data-validate="required" required>
+          <span class="form__error" data-error-for="synm" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="sykn">氏名（カナ）</label>
+        <div class="form__control">
+          <input class="input input--md" type="text" id="sykn" name="sykn" maxlength="80">
+          <span class="form__hint">全角カタカナ</span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="sybs">所属</label>
+        <div class="form__control">
+          <select class="select" id="sybs" name="sybs" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="10">営業部</option>
+            <option value="20">仕入部</option>
+            <option value="30">物流部</option>
+            <option value="40">情報システム部</option>
+            <option value="90">管理部</option>
+          </select>
+          <span class="form__error" data-error-for="sybs" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="sypo">役職</label>
+        <div class="form__control">
+          <select class="select" id="sypo" name="sypo">
+            <option value="">選択してください</option>
+            <option value="1">担当</option>
+            <option value="2">主任</option>
+            <option value="3">課長</option>
+            <option value="4">部長</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="syml">メールアドレス</label>
+        <div class="form__control">
+          <input class="input input--lg" type="email" id="syml" name="syml" maxlength="100">
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <a class="btn" href="./syain_list.html">キャンセル</a>
+        <button class="btn btn--primary" type="submit">登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>

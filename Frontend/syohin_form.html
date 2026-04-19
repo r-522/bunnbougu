@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品マスタ登録 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <a href="./syohin_list.html">商品マスタ一覧</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>商品マスタ登録</span>
+    </nav>
+
+    <h1 class="h1">F03 商品マスタ登録</h1>
+
+    <form class="form" action="/syohin" method="post" novalidate>
+      <div class="form__row">
+        <label class="form__label form__label--required" for="prdcd">商品コード</label>
+        <div class="form__control">
+          <input class="input input--sm" type="text" id="prdcd" name="prdcd"
+            maxlength="10" data-validate="required" required>
+          <span class="form__hint">半角英数字10桁以内（例: P0001）</span>
+          <span class="form__error" data-error-for="prdcd" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="prdnm">商品名</label>
+        <div class="form__control">
+          <input class="input input--lg" type="text" id="prdnm" name="prdnm"
+            maxlength="60" data-validate="required" required>
+          <span class="form__hint">60文字以内</span>
+          <span class="form__error" data-error-for="prdnm" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="prdct">カテゴリ</label>
+        <div class="form__control">
+          <select class="select" id="prdct" name="prdct" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="01">筆記具</option>
+            <option value="02">ノート・紙製品</option>
+            <option value="03">ファイル・バインダ</option>
+            <option value="04">接着・修正</option>
+            <option value="05">事務雑貨</option>
+          </select>
+          <span class="form__error" data-error-for="prdct" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="prdpr">単価（円）</label>
+        <div class="form__control">
+          <input class="input input--num" type="number" id="prdpr" name="prdpr"
+            min="0" step="1" data-validate="required numeric" required>
+          <span class="form__hint">半角数値・税抜</span>
+          <span class="form__error" data-error-for="prdpr" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label form__label--required" for="prdun">単位</label>
+        <div class="form__control">
+          <select class="select" id="prdun" name="prdun" data-validate="required" required>
+            <option value="">選択してください</option>
+            <option value="本">本</option>
+            <option value="冊">冊</option>
+            <option value="箱">箱</option>
+            <option value="袋">袋</option>
+            <option value="個">個</option>
+            <option value="セット">セット</option>
+          </select>
+          <span class="form__error" data-error-for="prdun" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="prdrm">備考</label>
+        <div class="form__control">
+          <textarea class="textarea" id="prdrm" name="prdrm" maxlength="500"></textarea>
+          <span class="form__hint">500文字以内</span>
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <a class="btn" href="./syohin_list.html">キャンセル</a>
+        <button class="btn btn--primary" type="submit">登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>

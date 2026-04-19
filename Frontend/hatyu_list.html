@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>発注一覧 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>発注一覧</span>
+    </nav>
+
+    <h1 class="h1">F08 発注一覧</h1>
+
+    <form class="search" action="./hatyu_list.html" method="get">
+      <div class="search__row">
+        <label class="search__label" for="q_hano">発注番号</label>
+        <input class="input input--sm" type="text" id="q_hano" name="hano" maxlength="12">
+        <label class="search__label" for="q_trcd">仕入先</label>
+        <input class="input input--sm" type="text" id="q_trcd" name="trcd" maxlength="10">
+        <label class="search__label" for="q_haf">発注日（開始）</label>
+        <input class="input input--sm" type="date" id="q_haf" name="haf">
+        <label class="search__label" for="q_hat">発注日（終了）</label>
+        <input class="input input--sm" type="date" id="q_hat" name="hat">
+        <label class="search__label" for="q_hast">状態</label>
+        <select class="select" id="q_hast" name="hast">
+          <option value="">すべて</option>
+          <option value="1">発注済</option>
+          <option value="2">一部入荷</option>
+          <option value="3">入荷完了</option>
+          <option value="9">取消</option>
+        </select>
+      </div>
+      <div class="search__actions">
+        <button class="btn btn--primary btn--sm" type="submit">検索</button>
+        <a class="btn btn--sm" href="./hatyu_list.html">クリア</a>
+      </div>
+    </form>
+
+    <div class="btn-group">
+      <a class="btn btn--primary" href="./hatyu_form.html">新規発注入力</a>
+      <a class="btn" href="./menu.html">メニューへ戻る</a>
+    </div>
+
+    <table class="table" aria-label="発注一覧">
+      <thead>
+        <tr>
+          <th scope="col">発注番号</th>
+          <th scope="col">発注日</th>
+          <th scope="col">仕入先</th>
+          <th scope="col">入荷予定日</th>
+          <th scope="col">金額（税抜）</th>
+          <th scope="col">状態</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">H202604001</td>
+          <td class="mono">2026-04-02</td>
+          <td>東京文具卸株式会社</td>
+          <td class="mono">2026-04-12</td>
+          <td class="table__num" data-format="number">120000</td>
+          <td>入荷完了</td>
+          <td class="table__actions">
+            <a href="./hatyu_form.html?mode=view&hano=H202604001">参照</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">H202604002</td>
+          <td class="mono">2026-04-10</td>
+          <td>大阪ステーショナリー商会</td>
+          <td class="mono">2026-04-20</td>
+          <td class="table__num" data-format="number">54000</td>
+          <td>一部入荷</td>
+          <td class="table__actions">
+            <a href="./hatyu_form.html?mode=edit&hano=H202604002">修正</a>
+            <a href="./hatyu_form.html?mode=cancel&hano=H202604002">取消</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">H202604003</td>
+          <td class="mono">2026-04-17</td>
+          <td>東京文具卸株式会社</td>
+          <td class="mono">2026-04-27</td>
+          <td class="table__num" data-format="number">86000</td>
+          <td>発注済</td>
+          <td class="table__actions">
+            <a href="./hatyu_form.html?mode=edit&hano=H202604003">修正</a>
+            <a href="./hatyu_form.html?mode=cancel&hano=H202604003">取消</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="pagination" aria-label="ページ送り">
+      <span class="pagination__current">1</span> / 1
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+</body>
+</html>

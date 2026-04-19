@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>出荷登録 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>出荷登録</span>
+    </nav>
+
+    <h1 class="h1">F10 出荷登録</h1>
+
+    <div class="msg msg--info">受注番号を指定し、出荷数量を入力してください。出荷処理により在庫数が自動引落されます。</div>
+
+    <form class="search" action="./syukka.html" method="get">
+      <div class="search__row">
+        <label class="search__label" for="q_juno">受注番号</label>
+        <input class="input input--sm" type="text" id="q_juno" name="juno"
+          maxlength="12" value="J202604002">
+        <button class="btn btn--primary btn--sm" type="submit">表示</button>
+      </div>
+    </form>
+
+    <form class="form" action="/syukka" method="post" novalidate
+      data-confirm="出荷実績を登録します。よろしいですか？">
+      <h2 class="h2">受注情報</h2>
+      <table class="table table--detail" aria-label="受注情報">
+        <tbody>
+          <tr><th scope="row">受注番号</th><td class="mono">J202604002</td></tr>
+          <tr><th scope="row">受注日</th><td class="mono">2026-04-05</td></tr>
+          <tr><th scope="row">販売先</th><td>T0102 横浜ブックセンター</td></tr>
+          <tr><th scope="row">納期</th><td class="mono">2026-04-15</td></tr>
+          <tr><th scope="row">状態</th><td>出荷準備中</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="h2">出荷情報</h2>
+      <div class="form__row">
+        <label class="form__label form__label--required" for="sydt">出荷日</label>
+        <div class="form__control">
+          <input class="input input--sm" type="date" id="sydt" name="sydt"
+            value="2026-04-19" data-validate="required" required>
+          <span class="form__error" data-error-for="sydt" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="sycr">配送業者</label>
+        <div class="form__control">
+          <select class="select" id="sycr" name="sycr">
+            <option value="">選択してください</option>
+            <option value="01">ヤマト運輸</option>
+            <option value="02">佐川急便</option>
+            <option value="03">日本郵便</option>
+            <option value="99">自社便</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label class="form__label" for="sytn">送り状番号</label>
+        <div class="form__control">
+          <input class="input input--md mono" type="text" id="sytn" name="sytn" maxlength="30">
+        </div>
+      </div>
+
+      <h2 class="h2">明細</h2>
+      <table class="table" aria-label="出荷明細">
+        <thead>
+          <tr>
+            <th scope="col">行</th>
+            <th scope="col">商品コード</th>
+            <th scope="col">商品名</th>
+            <th scope="col">受注数</th>
+            <th scope="col">出荷済数</th>
+            <th scope="col">有効在庫</th>
+            <th scope="col">今回出荷数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table__center mono">1</td>
+            <td class="mono">P0001</td>
+            <td>HB鉛筆 12本入</td>
+            <td class="table__num" data-format="number">20</td>
+            <td class="table__num" data-format="number">0</td>
+            <td class="table__num" data-format="number">1100</td>
+            <td>
+              <input class="input input--num" type="number" name="dt_syqty_1"
+                value="20" min="0" step="1" data-validate="numeric">
+            </td>
+          </tr>
+          <tr>
+            <td class="table__center mono">2</td>
+            <td class="mono">P0004</td>
+            <td>スティックのり 大</td>
+            <td class="table__num" data-format="number">60</td>
+            <td class="table__num" data-format="number">0</td>
+            <td class="table__num" data-format="number">500</td>
+            <td>
+              <input class="input input--num" type="number" name="dt_syqty_2"
+                value="60" min="0" step="1" data-validate="numeric">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="form__actions">
+        <a class="btn" href="./menu.html">キャンセル</a>
+        <button class="btn btn--primary" type="submit">出荷登録する</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/validate.js"></script>
+</body>
+</html>

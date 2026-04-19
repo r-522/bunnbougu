@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作履歴照会 - 文房具基幹システム</title>
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <span class="header__title">文房具基幹システム</span>
+      <span class="header__user">
+        <span class="mono">12345</span> 業務太郎
+        <a href="/logout">ログアウト</a>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./menu.html">メニュー</a>
+      <span class="breadcrumb__sep">&gt;</span>
+      <span>操作履歴照会</span>
+    </nav>
+
+    <h1 class="h1">F11 操作履歴照会</h1>
+
+    <form class="search" action="./log.html" method="get">
+      <div class="search__row">
+        <label class="search__label" for="q_logf">期間開始</label>
+        <input class="input input--sm" type="date" id="q_logf" name="logf">
+        <label class="search__label" for="q_logt">期間終了</label>
+        <input class="input input--sm" type="date" id="q_logt" name="logt">
+        <label class="search__label" for="q_sycd">社員番号</label>
+        <input class="input input--sm" type="text" id="q_sycd" name="sycd"
+          maxlength="5" inputmode="numeric" pattern="\d*">
+        <label class="search__label" for="q_lgop">操作区分</label>
+        <select class="select" id="q_lgop" name="lgop">
+          <option value="">すべて</option>
+          <option value="LOGIN">ログイン</option>
+          <option value="LOGOUT">ログアウト</option>
+          <option value="CREATE">登録</option>
+          <option value="UPDATE">更新</option>
+          <option value="DELETE">削除</option>
+          <option value="ERROR">エラー</option>
+        </select>
+        <label class="search__label" for="q_lgtg">対象機能</label>
+        <select class="select" id="q_lgtg" name="lgtg">
+          <option value="">すべて</option>
+          <option value="F03">F03 商品マスタ</option>
+          <option value="F04">F04 取引先マスタ</option>
+          <option value="F05">F05 社員マスタ</option>
+          <option value="F06">F06 在庫</option>
+          <option value="F07">F07 受注</option>
+          <option value="F08">F08 発注</option>
+          <option value="F09">F09 入荷</option>
+          <option value="F10">F10 出荷</option>
+        </select>
+      </div>
+      <div class="search__actions">
+        <button class="btn btn--primary btn--sm" type="submit">検索</button>
+        <a class="btn btn--sm" href="./log.html">クリア</a>
+      </div>
+    </form>
+
+    <div class="btn-group">
+      <a class="btn" href="./menu.html">メニューへ戻る</a>
+    </div>
+
+    <table class="table" aria-label="操作履歴一覧">
+      <thead>
+        <tr>
+          <th scope="col">日時</th>
+          <th scope="col">社員番号</th>
+          <th scope="col">氏名</th>
+          <th scope="col">操作区分</th>
+          <th scope="col">対象機能</th>
+          <th scope="col">対象キー</th>
+          <th scope="col">内容</th>
+          <th scope="col">結果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">2026-04-19 09:12:03</td>
+          <td class="mono">12345</td>
+          <td>業務 太郎</td>
+          <td>LOGIN</td>
+          <td class="mono">-</td>
+          <td class="mono">-</td>
+          <td>ログイン成功</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-04-19 09:15:22</td>
+          <td class="mono">12345</td>
+          <td>業務 太郎</td>
+          <td>CREATE</td>
+          <td class="mono">F07</td>
+          <td class="mono">J202604003</td>
+          <td>受注登録</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-04-19 10:03:45</td>
+          <td class="mono">20001</td>
+          <td>田中 仕入</td>
+          <td>CREATE</td>
+          <td class="mono">F08</td>
+          <td class="mono">H202604003</td>
+          <td>発注登録</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-04-19 11:22:01</td>
+          <td class="mono">30001</td>
+          <td>伊藤 物流</td>
+          <td>UPDATE</td>
+          <td class="mono">F09</td>
+          <td class="mono">H202604002</td>
+          <td>入荷登録（400点）</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-04-19 13:45:18</td>
+          <td class="mono">12345</td>
+          <td>業務 太郎</td>
+          <td>UPDATE</td>
+          <td class="mono">F06</td>
+          <td class="mono">P0002</td>
+          <td>在庫調整（30→30 棚卸差異なし）</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-04-19 14:02:30</td>
+          <td class="mono">12345</td>
+          <td>業務 太郎</td>
+          <td>ERROR</td>
+          <td class="mono">F10</td>
+          <td class="mono">J202604099</td>
+          <td>出荷登録：有効在庫不足</td>
+          <td>NG</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="pagination" aria-label="ページ送り">
+      <a href="?page=1">&lt;&lt; 先頭</a>
+      <a href="?page=1">&lt; 前</a>
+      <span class="pagination__current">1</span> / 10
+      <a href="?page=2">次 &gt;</a>
+      <a href="?page=10">末尾 &gt;&gt;</a>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; Stationery Core System</small>
+  </footer>
+
+  <script src="./js/common.js"></script>
+</body>
+</html>
