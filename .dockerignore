@@ -1,0 +1,32 @@
+# コンテキスト軽量化（Cloud Build / docker build 時の転送量削減）
+# ビルド成果物
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Git / CI
+.git/
+.gitignore
+.github/
+
+# 設計書（コンテナ実行に不要）
+設計書/
+
+# ローカル DB スクリプト（Supabase 等で別途投入する想定）
+データ/
+
+# Docker 関連自身
+Dockerfile
+.dockerignore
+
+# ドキュメント
+README.md
+*.md
