@@ -83,6 +83,11 @@ public final class AuthHandler implements HttpHandler {
             HttpUtil.redirect(ex, "/login");
             return;
         }
+        // セッション固定（Session Fixation）対策：既存SIDを必ず破棄してから新規発行する
+        final String oldSid = HttpUtil.getCookie(ex, SessionStore.COOKIE_NAME);
+        if (oldSid != null) {
+            SessionStore.destroy(oldSid);
+        }
         // セッション発行
         final String sid = SessionStore.create(syainNo);
         HttpUtil.setCookie(ex, SessionStore.COOKIE_NAME, sid);

@@ -3,6 +3,7 @@ package jp.co.stationery.handler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.service.SyukkaService;
+import jp.co.stationery.util.DateUtil;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
 import jp.co.stationery.util.TemplateEngine;
@@ -50,7 +51,7 @@ public final class SyukkaHandler extends HandlerBase implements HttpHandler {
     private void handlePost(final HttpExchange ex, final String syainNo) throws Exception {
         final Map<String, String> form = HttpUtil.readFormBody(ex);
         final String juno = HttpUtil.param(form, "juno");
-        final LocalDate sydt = parseDate(HttpUtil.param(form, "sydt"));
+        final LocalDate sydt = DateUtil.parseLocalDate(HttpUtil.param(form, "sydt"));
         final String sycr = HttpUtil.param(form, "sycr");
         final String sytn = HttpUtil.param(form, "sytn");
         if (juno.isBlank() || sydt == null) {
@@ -91,8 +92,4 @@ public final class SyukkaHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/jutyu");
     }
 
-    private LocalDate parseDate(final String s) {
-        if (s == null || s.isBlank()) return null;
-        try { return LocalDate.parse(s); } catch (Exception e) { return null; }
-    }
 }

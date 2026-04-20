@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>入荷登録 - 文房具基幹システム</title>
-  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
   <header class="header">
@@ -19,7 +19,7 @@
 
   <main class="main">
     <nav class="breadcrumb" aria-label="パンくずリスト">
-      <a href="./menu.html">メニュー</a>
+      <a href="/menu">メニュー</a>
       <span class="breadcrumb__sep">&gt;</span>
       <span>入荷登録</span>
     </nav>
@@ -28,7 +28,7 @@
 
     <div class="msg msg--info">発注番号を指定し、入荷数量を入力してください。入荷処理により在庫数が自動更新されます。</div>
 
-    <form class="search" action="./nyuka.html" method="get">
+    <form class="search" action="/nyuka" method="get">
       <div class="search__row">
         <label class="search__label" for="q_hano">発注番号</label>
         <input class="input input--sm" type="text" id="q_hano" name="hano"
@@ -106,7 +106,7 @@
       </table>
 
       <div class="form__actions">
-        <a class="btn" href="./menu.html">キャンセル</a>
+        <a class="btn" href="/menu">キャンセル</a>
         <button class="btn btn--primary" type="submit">入荷登録する</button>
       </div>
     </form>
@@ -116,7 +116,7 @@
     <small>&copy; Stationery Core System</small>
   </footer>
 
-  <script src="./js/common.js"></script>
-  <script src="./js/validate.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/validate.js"></script>
 </body>
 </html>

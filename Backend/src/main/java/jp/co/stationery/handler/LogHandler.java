@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.dao.SousaLogDao;
 import jp.co.stationery.model.SousaLog;
+import jp.co.stationery.util.DateUtil;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -31,8 +32,8 @@ public final class LogHandler extends HandlerBase implements HttpHandler {
         }
         try {
             final Map<String, String> q = HttpUtil.readQuery(ex);
-            final LocalDate from = parseDate(HttpUtil.param(q, "logf"));
-            final LocalDate to = parseDate(HttpUtil.param(q, "logt"));
+            final LocalDate from = DateUtil.parseLocalDate(HttpUtil.param(q, "logf"));
+            final LocalDate to = DateUtil.parseLocalDate(HttpUtil.param(q, "logt"));
             final String sycd = HttpUtil.param(q, "sycd");
             final String lgop = HttpUtil.param(q, "lgop");
             final String lgtg = HttpUtil.param(q, "lgtg");
@@ -67,8 +68,4 @@ public final class LogHandler extends HandlerBase implements HttpHandler {
         }
     }
 
-    private LocalDate parseDate(final String s) {
-        if (s == null || s.isBlank()) return null;
-        try { return LocalDate.parse(s); } catch (Exception e) { return null; }
-    }
 }

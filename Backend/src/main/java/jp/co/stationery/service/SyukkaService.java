@@ -62,8 +62,8 @@ public final class SyukkaService {
                     }
                     // 在庫減算
                     zaikoDao.subtractQuantity(con, d.prdcd, effective, updatedBy);
-                    // 出荷実績を登録
-                    insertSyukka(con, juno, d.juln, d.prdcd, sydt, effective, sycr, sytn, updatedBy);
+                    // 出荷実績を登録（スキーマ上 prdcd カラムは無いため (juno, juln) のみで紐付け）
+                    insertSyukka(con, juno, d.juln, sydt, effective, sycr, sytn, updatedBy);
                 }
                 // 受注ヘッダ状態を更新（簡易：未出荷残無し→出荷済(3)、それ以外→出荷準備中(2)）
                 final int totalRemain = sumRemainQty(con, juno);
@@ -111,27 +111,27 @@ public final class SyukkaService {
         }
     }
 
-    // TBL_SYUKKA に出荷実績を1行追加
-    private void insertSyukka(final Connection con, final String juno, final int lineNo, final String prdcd,
+    // TBL_SYUKKA に出荷実績を1行追加。
+    // スキーマ（init.sql）では prdcd カラムは存在しないため、(juno, juln) のみで紐付けする。
+    private void insertSyukka(final Connection con, final String juno, final int lineNo,
                               final LocalDate sydt, final int qty, final String sycr, final String sytn,
                               final String updatedBy) throws SQLException {
         final String sql =
             "INSERT INTO TBL_SYUKKA " +
-            "(juno, juln, prdcd, sydt, syqt, sycr, sytn, syct, sycb, syut, syub, sydf) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0')";
+            "(juno, juln, sydt, syqt, sycr, sytn, syct, sycb, syut, syub, sydf) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0')";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             final Timestamp now = Timestamp.valueOf(LocalDateTime.now());
             ps.setString(1, juno);
             ps.setInt(2, lineNo);
-            ps.setString(3, prdcd);
-            ps.setDate(4, java.sql.Date.valueOf(sydt));
-            ps.setInt(5, qty);
-            ps.setString(6, sycr == null ? "" : sycr);
-            ps.setString(7, sytn == null ? "" : sytn);
-            ps.setTimestamp(8, now);
-            ps.setString(9, updatedBy);
-            ps.setTimestamp(10, now);
-            ps.setString(11, updatedBy);
+            ps.setDate(3, java.sql.Date.valueOf(sydt));
+            ps.setInt(4, qty);
+            ps.setString(5, sycr == null ? "" : sycr);
+            ps.setString(6, sytn == null ? "" : sytn);
+            ps.setTimestamp(7, now);
+            ps.setString(8, updatedBy);
+            ps.setTimestamp(9, now);
+            ps.setString(10, updatedBy);
             ps.executeUpdate();
         }
     }

@@ -7,6 +7,8 @@ import jp.co.stationery.dao.SyohinDao;
 import jp.co.stationery.model.HatyuDetail;
 import jp.co.stationery.model.HatyuHeader;
 import jp.co.stationery.model.Syohin;
+import jp.co.stationery.util.Codes;
+import jp.co.stationery.util.DateUtil;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -64,8 +66,8 @@ public final class HatyuHandler extends HandlerBase implements HttpHandler {
         final Map<String, String> q = HttpUtil.readQuery(ex);
         final String hano = HttpUtil.param(q, "hano");
         final String trcd = HttpUtil.param(q, "trcd");
-        final LocalDate from = parseDate(HttpUtil.param(q, "haf"));
-        final LocalDate to = parseDate(HttpUtil.param(q, "hat"));
+        final LocalDate from = DateUtil.parseLocalDate(HttpUtil.param(q, "haf"));
+        final LocalDate to = DateUtil.parseLocalDate(HttpUtil.param(q, "hat"));
         final String hast = HttpUtil.param(q, "hast");
         final List<HatyuHeader> list = dao.search(hano, trcd, from, to, hast);
         // 行構築
@@ -85,7 +87,7 @@ public final class HatyuHandler extends HandlerBase implements HttpHandler {
                     .append("<td class=\"mono\">").append(h.hank == null ? "" : h.hank.toString()).append("</td>")
                     .append("<td class=\"table__num mono\">")
                         .append(nf.format(h.hasm == null ? BigDecimal.ZERO : h.hasm)).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(hatyuStateName(h.hast))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.hatyuStateName(h.hast))).append("</td>")
                     .append("<td>")
                         .append("<form method=\"post\" action=\"/hatyu/cancel\" style=\"display:inline\">")
                         .append("<input type=\"hidden\" name=\"hano\" value=\"")
@@ -111,8 +113,8 @@ public final class HatyuHandler extends HandlerBase implements HttpHandler {
     private void handleCreate(final HttpExchange ex, final String syainNo) throws Exception {
         final Map<String, String> form = HttpUtil.readFormBody(ex);
         final HatyuHeader h = new HatyuHeader();
-        h.hadt = parseDate(HttpUtil.param(form, "hadt"));
-        h.hank = parseDate(HttpUtil.param(form, "hank"));
+        h.hadt = DateUtil.parseLocalDate(HttpUtil.param(form, "hadt"));
+        h.hank = DateUtil.parseLocalDate(HttpUtil.param(form, "hank"));
         h.hatr = HttpUtil.param(form, "hatr");
         h.harm = HttpUtil.param(form, "harm");
         if (h.hadt == null || h.hank == null || h.hatr.isBlank()) {
@@ -178,19 +180,4 @@ public final class HatyuHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/hatyu");
     }
 
-    private String hatyuStateName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "1": return "発注済";
-            case "2": return "一部入荷";
-            case "3": return "入荷完了";
-            case "9": return "取消";
-            default: return code;
-        }
-    }
-
-    private LocalDate parseDate(final String s) {
-        if (s == null || s.isBlank()) return null;
-        try { return LocalDate.parse(s); } catch (Exception e) { return null; }
-    }
 }
