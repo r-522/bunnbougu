@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.dao.SyohinDao;
 import jp.co.stationery.model.Syohin;
+import jp.co.stationery.util.Codes;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -75,7 +76,7 @@ public final class SyohinHandler extends HandlerBase implements HttpHandler {
                 rows.append("<tr>")
                     .append("<td class=\"mono\">").append(HtmlEscape.escape(p.prdcd)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(p.prdnm)).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(categoryName(p.prdct))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.categoryName(p.prdct))).append("</td>")
                     .append("<td class=\"table__num mono\">")
                         .append(nf.format(p.prdpr == null ? BigDecimal.ZERO : p.prdpr)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(p.prdun)).append("</td>")
@@ -147,16 +148,4 @@ public final class SyohinHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/syohin");
     }
 
-    // カテゴリコード→表示名
-    private String categoryName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "01": return "筆記具";
-            case "02": return "ノート・紙製品";
-            case "03": return "ファイル・バインダ";
-            case "04": return "接着・修正";
-            case "05": return "事務雑貨";
-            default: return code;
-        }
-    }
 }

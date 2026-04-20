@@ -7,6 +7,8 @@ import jp.co.stationery.dao.SyohinDao;
 import jp.co.stationery.model.JutyuDetail;
 import jp.co.stationery.model.JutyuHeader;
 import jp.co.stationery.model.Syohin;
+import jp.co.stationery.util.Codes;
+import jp.co.stationery.util.DateUtil;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -64,8 +66,8 @@ public final class JutyuHandler extends HandlerBase implements HttpHandler {
         final Map<String, String> q = HttpUtil.readQuery(ex);
         final String juno = HttpUtil.param(q, "juno");
         final String trcd = HttpUtil.param(q, "trcd");
-        final LocalDate from = parseDate(HttpUtil.param(q, "juf"));
-        final LocalDate to = parseDate(HttpUtil.param(q, "jut"));
+        final LocalDate from = DateUtil.parseLocalDate(HttpUtil.param(q, "juf"));
+        final LocalDate to = DateUtil.parseLocalDate(HttpUtil.param(q, "jut"));
         final String just = HttpUtil.param(q, "just");
         final List<JutyuHeader> list = dao.search(juno, trcd, from, to, just);
         // 行構築
@@ -85,7 +87,7 @@ public final class JutyuHandler extends HandlerBase implements HttpHandler {
                     .append("<td class=\"mono\">").append(h.junk == null ? "" : h.junk.toString()).append("</td>")
                     .append("<td class=\"table__num mono\">")
                         .append(nf.format(h.jusm == null ? BigDecimal.ZERO : h.jusm)).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(jutyuStateName(h.just))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.jutyuStateName(h.just))).append("</td>")
                     .append("<td>")
                         .append("<form method=\"post\" action=\"/jutyu/cancel\" style=\"display:inline\">")
                         .append("<input type=\"hidden\" name=\"juno\" value=\"")
@@ -112,8 +114,8 @@ public final class JutyuHandler extends HandlerBase implements HttpHandler {
         final Map<String, String> form = HttpUtil.readFormBody(ex);
         // ヘッダ情報組立
         final JutyuHeader h = new JutyuHeader();
-        h.judt = parseDate(HttpUtil.param(form, "judt"));
-        h.junk = parseDate(HttpUtil.param(form, "junk"));
+        h.judt = DateUtil.parseLocalDate(HttpUtil.param(form, "judt"));
+        h.junk = DateUtil.parseLocalDate(HttpUtil.param(form, "junk"));
         h.jutr = HttpUtil.param(form, "jutr");
         h.jurm = HttpUtil.param(form, "jurm");
         if (h.judt == null || h.junk == null || h.jutr.isBlank()) {
@@ -189,21 +191,4 @@ public final class JutyuHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/jutyu");
     }
 
-    // 状態コード→表示名
-    private String jutyuStateName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "1": return "受付済";
-            case "2": return "出荷準備中";
-            case "3": return "出荷済";
-            case "9": return "取消";
-            default: return code;
-        }
-    }
-
-    // 日付パース（空・不正はnull）
-    private LocalDate parseDate(final String s) {
-        if (s == null || s.isBlank()) return null;
-        try { return LocalDate.parse(s); } catch (Exception e) { return null; }
-    }
 }

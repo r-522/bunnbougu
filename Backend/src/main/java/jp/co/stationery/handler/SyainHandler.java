@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.dao.SyainDao;
 import jp.co.stationery.model.Syain;
+import jp.co.stationery.util.Codes;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -67,8 +68,8 @@ public final class SyainHandler extends HandlerBase implements HttpHandler {
                     .append("<td class=\"mono\">").append(HtmlEscape.escape(s.sycd)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(s.synm)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(s.sykn)).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(deptName(s.sybs))).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(positionName(s.sypo))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.deptName(s.sybs))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.positionName(s.sypo))).append("</td>")
                     .append("<td class=\"mono\">-</td>")
                     .append("<td>")
                         .append("<form method=\"post\" action=\"/syain/delete\" style=\"display:inline\">")
@@ -125,26 +126,4 @@ public final class SyainHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/syain");
     }
 
-    private String deptName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "10": return "営業部";
-            case "20": return "仕入部";
-            case "30": return "物流部";
-            case "40": return "情報システム部";
-            case "90": return "管理部";
-            default: return code;
-        }
-    }
-
-    private String positionName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "1": return "担当";
-            case "2": return "主任";
-            case "3": return "課長";
-            case "4": return "部長";
-            default: return code;
-        }
-    }
 }

@@ -93,22 +93,14 @@ public final class ZaikoHandler extends HandlerBase implements HttpHandler {
 
     // 調整フォーム
     private void handleAdjustForm(final HttpExchange ex, final String syainNo) throws Exception {
-        // 商品コード必須
         final Map<String, String> q = HttpUtil.readQuery(ex);
         final String prdcd = HttpUtil.param(q, "prdcd");
         if (prdcd.isBlank()) {
             HttpUtil.redirect(ex, "/zaiko");
             return;
         }
-        // 在庫情報を取得しテンプレートに差込
-        final Zaiko z = dao.findByCode(prdcd, null);
-        // テンプレート利用：固定値書換版を生成
-        final Map<String, String> params = baseParams(syainNo);
-        // テンプレート側はモック値だが、共通ヘッダ差込はそのまま動く。差込で出力する
-        final String tmpl = TemplateEngine.render("zaiko_adjust.html", params);
-        HttpUtil.sendHtml(ex, 200, tmpl);
-        // 以降未使用変数の警告抑止のため、参照のみ残す
-        if (z != null) { z.toString(); }
+        HttpUtil.sendHtml(ex, 200,
+            TemplateEngine.render("zaiko_adjust.html", baseParams(syainNo)));
     }
 
     // 調整実行

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>受注一覧 - 文房具基幹システム</title>
-  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
   <header class="header">
@@ -19,14 +19,14 @@
 
   <main class="main">
     <nav class="breadcrumb" aria-label="パンくずリスト">
-      <a href="./menu.html">メニュー</a>
+      <a href="/menu">メニュー</a>
       <span class="breadcrumb__sep">&gt;</span>
       <span>受注一覧</span>
     </nav>
 
     <h1 class="h1">F07 受注一覧</h1>
 
-    <form class="search" action="./jutyu_list.html" method="get">
+    <form class="search" action="/jutyu" method="get">
       <div class="search__row">
         <label class="search__label" for="q_juno">受注番号</label>
         <input class="input input--sm" type="text" id="q_juno" name="juno" maxlength="12">
@@ -47,13 +47,13 @@
       </div>
       <div class="search__actions">
         <button class="btn btn--primary btn--sm" type="submit">検索</button>
-        <a class="btn btn--sm" href="./jutyu_list.html">クリア</a>
+        <a class="btn btn--sm" href="/jutyu">クリア</a>
       </div>
     </form>
 
     <div class="btn-group">
-      <a class="btn btn--primary" href="./jutyu_form.html">新規受注入力</a>
-      <a class="btn" href="./menu.html">メニューへ戻る</a>
+      <a class="btn btn--primary" href="/jutyu/new">新規受注入力</a>
+      <a class="btn" href="/menu">メニューへ戻る</a>
     </div>
 
     <table class="table" aria-label="受注一覧">
@@ -82,6 +82,6 @@
     <small>&copy; Stationery Core System</small>
   </footer>
 
-  <script src="./js/common.js"></script>
+  <script src="/js/common.js"></script>
 </body>
 </html>

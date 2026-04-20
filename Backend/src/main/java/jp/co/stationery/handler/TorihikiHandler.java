@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.dao.TorihikiDao;
 import jp.co.stationery.model.Torihiki;
+import jp.co.stationery.util.Codes;
 import jp.co.stationery.util.HtmlEscape;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
@@ -67,7 +68,7 @@ public final class TorihikiHandler extends HandlerBase implements HttpHandler {
                 rows.append("<tr>")
                     .append("<td class=\"mono\">").append(HtmlEscape.escape(t.trcd)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(t.trnm)).append("</td>")
-                    .append("<td>").append(HtmlEscape.escape(typeName(t.trtp))).append("</td>")
+                    .append("<td>").append(HtmlEscape.escape(Codes.torihikiTypeName(t.trtp))).append("</td>")
                     .append("<td class=\"mono\">").append(HtmlEscape.escape(t.trtl)).append("</td>")
                     .append("<td>").append(HtmlEscape.escape(t.trpc)).append("</td>")
                     .append("<td class=\"mono\">-</td>")
@@ -131,13 +132,4 @@ public final class TorihikiHandler extends HandlerBase implements HttpHandler {
         HttpUtil.redirect(ex, "/torihiki");
     }
 
-    private String typeName(final String code) {
-        if (code == null) return "";
-        switch (code) {
-            case "1": return "仕入先";
-            case "2": return "販売先";
-            case "3": return "両方";
-            default: return code;
-        }
-    }
 }

@@ -3,6 +3,7 @@ package jp.co.stationery.handler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import jp.co.stationery.service.NyukaService;
+import jp.co.stationery.util.DateUtil;
 import jp.co.stationery.util.HttpUtil;
 import jp.co.stationery.util.SousaLogger;
 import jp.co.stationery.util.TemplateEngine;
@@ -51,8 +52,8 @@ public final class NyukaHandler extends HandlerBase implements HttpHandler {
     private void handlePost(final HttpExchange ex, final String syainNo) throws Exception {
         final Map<String, String> form = HttpUtil.readFormBody(ex);
         final String hano = HttpUtil.param(form, "hano");
-        final LocalDate nydt = parseDate(HttpUtil.param(form, "nydt"));
-        final String nyno = HttpUtil.param(form, "nyno");
+        final LocalDate nydt = DateUtil.parseLocalDate(HttpUtil.param(form, "nydt"));
+        // 納品書番号はフォーム受領のみ（現行スキーマでは保存対象外）
         if (hano.isBlank() || nydt == null) {
             SousaLogger.log(SousaLogger.OP_CREATE, "F09", hano,
                             "必須項目不足", SousaLogger.RESULT_NG, syainNo);
@@ -79,7 +80,7 @@ public final class NyukaHandler extends HandlerBase implements HttpHandler {
         }
         // サービス実行
         try {
-            service.register(hano, nydt, nyno, qtyByLine, syainNo);
+            service.register(hano, nydt, qtyByLine, syainNo);
             SousaLogger.log(SousaLogger.OP_CREATE, "F09", hano,
                             "入荷登録 lines=" + qtyByLine.size(),
                             SousaLogger.RESULT_OK, syainNo);
@@ -88,10 +89,5 @@ public final class NyukaHandler extends HandlerBase implements HttpHandler {
                             SousaLogger.RESULT_NG, syainNo);
         }
         HttpUtil.redirect(ex, "/hatyu");
-    }
-
-    private LocalDate parseDate(final String s) {
-        if (s == null || s.isBlank()) return null;
-        try { return LocalDate.parse(s); } catch (Exception e) { return null; }
     }
 }
